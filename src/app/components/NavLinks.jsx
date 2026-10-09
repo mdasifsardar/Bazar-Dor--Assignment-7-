@@ -5,7 +5,6 @@ const NavLinks = async () => {
     "https://api.abcz.workers.dev/api/bazardor/categories",
   );
   const navLinksData = await res.json();
-  console.log(navLinksData);
 
   return (
     <section className="py-5 bg-[#FAFCFA] border-b border-[#E1E8E1]">

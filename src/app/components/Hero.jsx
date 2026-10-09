@@ -32,6 +32,7 @@ const Hero = () => {
             alt="hero"
             width={360}
             height={288}
+            loading="eager"
             className="h-auto w-full max-w-xs shrink-0 sm:max-w-sm"
           />
         </div>
