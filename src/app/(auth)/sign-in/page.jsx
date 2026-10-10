@@ -46,6 +46,21 @@ const SignIn = () => {
     }
   };
 
+  // Github
+  const handleGithub = async () => {
+    try {
+      const userGithubLogin = await signIn.social({
+        provider: "github",
+      });
+      if (userGithubLogin?.error) {
+        toast.error("গিটহাব দিয়ে সাইন ইন করতে সমস্যা হয়েছে!");
+        return;
+      }
+    } catch (error) {
+      toast.error("কোথাও কোনো সমস্যা হয়েছে, আবার চেষ্টা করুন।");
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto my-10 px-4">
       {/* Sign In Heading */}
@@ -97,7 +112,10 @@ const SignIn = () => {
               <FcGoogle size={18} />
               Google দিয়ে চালিয়ে যান
             </button>
-            <button className="btn btn-outline flex-1 text-xs font-normal rounded-xl">
+            <button
+              onClick={handleGithub}
+              className="btn btn-outline flex-1 text-xs font-normal rounded-xl"
+            >
               <FaGithub size={18} />
               GitHub দিয়ে চালিয়ে যান
             </button>

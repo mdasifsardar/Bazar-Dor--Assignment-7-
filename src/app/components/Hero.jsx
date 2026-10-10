@@ -4,7 +4,7 @@ import React from "react";
 const Hero = () => {
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-6">
-      <div className="hero rounded-3xl border border-base-300 bg-base-100">
+      <div className="hero rounded-3xl border border-base-300 bg-[#FAFDFA]">
         <div className="hero-content w-full flex-col items-start gap-6 py-10 lg:flex-row lg:justify-between">
           {/* Left Text */}
           <div className="max-w-xl">
