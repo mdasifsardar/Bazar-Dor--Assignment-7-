@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import NavLinks from "./NavLinks";
+import Link from "next/link";
+import UserInfo from "./UserInfo";
 
 const Header = () => {
   const currentDate = new Date().toLocaleDateString("bn-BD", {
@@ -8,10 +10,10 @@ const Header = () => {
   });
 
   return (
-    <header className=" bg-[#FAFCFA]">
-      <div className="flex flex-col gap-1 max-w-6xl mx-auto w-full  px-4 py-4">
+    <header className=" bg-[#FAFCFA] sticky top-0 z-40 ">
+      <div className="flex flex-col justify-between gap-1 max-w-6xl mx-auto w-full  backdrop-blur-sm px-4 py-3">
         {/* Logo & Text */}
-        <div className="flex gap-2 items-center">
+        <Link href={"/"} className="flex gap-2 items-center">
           <div className="bg-[#05893E] size-11 flex items-center justify-center rounded-lg">
             <Image
               src={"/logo-icon.png"}
@@ -28,7 +30,11 @@ const Header = () => {
               {currentDate}
             </span>
           </div>
-        </div>
+        </Link>
+
+        {/*  */}
+
+        <UserInfo />
       </div>
 
       {/* Border */}

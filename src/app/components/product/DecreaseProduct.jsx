@@ -3,7 +3,9 @@ import React from "react";
 const DecreaseProduct = async () => {
   //
   // Product Data Fetch & Decrease Product Filter
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
+  );
   const data = await res.json();
 
   const filterProduct = data.filter((product) => product.change.dir === "down");
@@ -75,7 +77,7 @@ const DecreaseProduct = async () => {
                 >
                   {product.change.dir === "down" ? "▼" : ""}
                   <span className="ml-1">
-                    {product.change.pct.toLocaleString("bn-BD", {
+                    {Math.abs(product.change.pct).toLocaleString("bn-BD", {
                       minimumFractionDigits: 1,
                     })}
                     %

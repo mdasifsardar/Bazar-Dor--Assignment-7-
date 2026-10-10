@@ -3,7 +3,9 @@ import React from "react";
 const IncreaseProduct = async () => {
   //
   // Product Data Fetch & Increase Product Filter
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
+  );
   const data = await res.json();
 
   const filterProduct = data.filter((product) => product.change.dir === "up");
@@ -17,7 +19,7 @@ const IncreaseProduct = async () => {
       {/* Increase Product */}
       <div className="mb-4 flex items-center gap-2 ">
         <h2 className="text-xl font-bold">
-          <span className="text-red-500 m2-1">▲</span>
+          <span className="text-red-500 mr-2">▲</span>
           আজ দাম বেড়েছে
         </h2>
       </div>

@@ -2,14 +2,19 @@ import React from "react";
 
 const AllProduct = async () => {
   // All Product Data Fetch
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/products",
+  );
   const data = await res.json();
 
   return (
     <div className="mt-10">
       {/* Increase Product */}
-      <div className="mb-4 flex items-center gap-2 ">
+      <div className="mb-4 flex items-start gap-2 flex-col">
         <h2 className="text-xl font-bold">সব পণ্য</h2>
+        <span className="text-sm text-[#1D271F]/70">
+          মোট ৩৩টি পণ্য দেখানো হচ্ছে
+        </span>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -74,7 +79,7 @@ const AllProduct = async () => {
                       ? "▲"
                       : "▼"}
                   <span className="ml-1">
-                    {product.change.pct.toLocaleString("bn-BD", {
+                    {Math.abs(product.change.pct).toLocaleString("bn-BD", {
                       minimumFractionDigits: 1,
                     })}
                     %
