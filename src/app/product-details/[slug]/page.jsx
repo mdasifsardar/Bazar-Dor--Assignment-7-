@@ -1,12 +1,20 @@
 import Link from "next/link";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { notFound } from "next/navigation";
 
 const ProductDetails = async ({ params }) => {
   const { slug } = await params;
   const res = await fetch(
     `https://openapi.programming-hero.com/api/bazardor/products/${slug}`,
   );
+
+  if (!res.ok) {
+    notFound();
+  }
+
   const data = await res.json();
+  if (!data || data.length === 0) {
+    notFound();
+  }
 
   //
   const minPrice = Math.min(...data.markets.map((m) => m.min));
