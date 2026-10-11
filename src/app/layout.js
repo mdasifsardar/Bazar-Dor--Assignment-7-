@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Header />
+
         <main className="bg-[#F0F5F0] flex-1 ">{children}</main>
         <Toaster position="top-center" reverseOrder={false} />
         <Footer />
