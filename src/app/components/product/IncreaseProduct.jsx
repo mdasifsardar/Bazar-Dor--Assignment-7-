@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const IncreaseProduct = async () => {
@@ -27,7 +28,8 @@ const IncreaseProduct = async () => {
       {/* Increase Product Map */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {increaseRate.map((product) => (
-          <div
+          <Link
+            href={`/product-details/${product.id}`}
             key={product.id}
             className="card border border-base-300 bg-[#FAFDFA] transition hover:border-[#008A40] hover:shadow-md  focus-visible:outline-[#008A40] cursor-pointer rounded-2xl"
           >
@@ -84,7 +86,7 @@ const IncreaseProduct = async () => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -1,17 +1,30 @@
+import SortSelect from "../../components/SortSelect";
 import React from "react";
 
-const ProductCategory = async ({ params }) => {
+const ProductCategory = async ({ params, searchParams }) => {
   //
   const { slug } = await params;
+  const { sort } = await searchParams;
   const res = await fetch(
     `https://openapi.programming-hero.com/api/bazardor/products?category=${slug}`,
   );
   const data = await res.json();
 
+  //
+  const sorted = [...data].sort((a, b) => {
+    if (sort === "low-to-high") {
+      return a.today - b.today;
+    }
+    if (sort === "high-to-low") {
+      return b.today - a.today;
+    }
+    return 0;
+  });
+
   return (
     <section className="mt-6 max-w-6xl mx-auto">
       {/* Heading */}
-      <div className="rounded-2xl border border-base-300 bg-base-100 p-5 flex items-center gap-2">
+      <div className="rounded-2xl border border-[#E1E8E1] bg-[#FAFCFA] not-visited:not-only-of-type:p-5 flex items-center gap-2">
         <p className="text-4xl">{data[0]?.categoryIcon}</p>
         <div>
           <h1 className="text-2xl font-bold">{data[0]?.categoryNameBn}</h1>
@@ -22,17 +35,29 @@ const ProductCategory = async ({ params }) => {
         </div>
       </div>
 
+      {/*  */}
+      <div className="bg-[#FAFCFA] rounded-2xl border border-[#E1E8E1] p-5 my-4 flex items-center justify-end gap-3">
+        {/* সাজান ড্রপডাউন অংশ */}
+        <div className="flex items-center gap-3">
+          <span className="text-sm font-medium text-gray-700">সাজান</span>
+
+          <div className="relative">
+            <SortSelect />
+          </div>
+        </div>
+      </div>
+
       {/* Product Length */}
       <div className="my-4">
         <p className="text-sm text-[#1D271F]/70">
-          {data.length.toLocaleString("bn-BD")}
-          <span>টি পণ্যের আজকের দাম ও পরিবর্তন</span>
+          মোট {data.length.toLocaleString("bn-BD")}
+          <span>টি পণ্য দেখানো হচ্ছে</span>
         </p>
       </div>
 
-      {/* Product */}
+      {/* Product Map*/}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {data.map((product) => (
+        {sorted.map((product) => (
           <div
             key={product.id}
             className="card border border-base-300 bg-[#FAFDFA] transition hover:border-[#008A40] hover:shadow-md  focus-visible:outline-[#008A40] cursor-pointer rounded-2xl"

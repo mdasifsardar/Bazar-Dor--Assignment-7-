@@ -2,7 +2,6 @@
 
 import { useSession, signOut, updateUser } from "../../lib/auth-client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import toast from "react-hot-toast";
 import { PiArrowBendDownLeft } from "react-icons/pi";
 
